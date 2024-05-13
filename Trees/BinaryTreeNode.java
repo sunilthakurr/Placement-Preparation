@@ -70,12 +70,30 @@ class BinaryTreeNode<T>{
         return Math.max(rData, Math.max(lMax, rMax));
     }
     
-    // Method to print Binary Tree in Inorder Traversal (LEFT -> ROOT -> RIGHT)
+    // Method to print Binary Tree in Inorder Traversal (LEFT -> ROOT -> RIGHT)  T.C:-O(N)   S.C :- O(N) -> stack space
     public static void inOrder(BinaryTreeNode<Integer> root){
+        // base-case when root value is null
+        if(root == null){
+            return;
+        }
+        inOrder(root.left);                 // call recursively for left subtree as it needs to be printed first
+        System.out.print(root.data+" ");    // Now, printing the root
+        inOrder(root.right);                // calling for the right subtree as it needs to be printed in last
         
     }
-    
+    // Method to print the elements of tree in preorder Traversal
+    // Order of travesal in preorder is (ROOT -> LEFT -> RIGHT)       T.C:- O(N)   S.C:- O(N) for stack space 
+    public static void preOrder(BinaryTreeNode<Integer> root){
+        // base-case when root value is null we need to return
+        if(root == null){
+            return;
+        }
+        System.out.print(root.data+" "); // printing the root data as it needs to be printed first
+        preOrder(root.left);             // calling recursively to the left subtree as it needs to be printed second
+        preOrder(root.right);            // calling recursively to the right subtree as it needs to be printed last 
+    }
 }
+
 public class Main{
     public static void main(String[] args){
         BinaryTreeNode root = BinaryTreeNode.takeInput();  // Taking a binary tree as Input
